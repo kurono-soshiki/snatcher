@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "snatcher"
+version = "0.1.0"
+description = "chatGPTを利用し他人を模倣するDiscordBot"
+authors = ["yootako <yootako03@gamil.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+discord = "^2.3.2"
+python-dotenv = "^1.0.1"
+google-generativeai = "^0.8.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
