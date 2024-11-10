@@ -9,6 +9,12 @@ python3.12とpoetryが必要です
   poetry run python3.12 main.py
   ```
 
+# CLI
+Discordを介さずCharacterのみ起動する
+
+```
+poetry run python3 src/cli.py
+```
 
 
 

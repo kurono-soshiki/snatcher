@@ -16,8 +16,8 @@ class character(TypedDict):
 
 # 現在対応しているユーザーのリスト、DiscordのユーザーIDを持つ
 character_dict : dict[character] = {
-    "00000000000000001": {
-        "user_id": "00000000000000001",
+    "1": {
+        "user_id": "1",
         "name": "aaaa777",
         "system_prompt": "あなたはこれからある人物を模倣してください。回答は端的です。アニメとゲームの知識があります。",
         "chat_data": [
@@ -40,8 +40,8 @@ character_dict : dict[character] = {
             "ありがとう、でも友達がGPT課金してるらしいからそっちで試させてもらおうと思う"
             ]
     },
-    "00000000000000002": {
-        "user_id": "00000000000000002",
+    "2": {
+        "user_id": "2",
         "name": "yootako",
         "system_prompt": "あなたはこれからある人物を模倣してください。回答は短め、文末に丸を付けない、動物が好き、ポケモンが好き",
         "chat_data": [
@@ -63,9 +63,8 @@ character_dict : dict[character] = {
             "草"
         ]
     },
-
-        "000000000000000003": {
-        "user_id": "00000000000000003",
+    "3": {
+        "user_id": "3",
         "name": "user",
         "system_prompt": "あなたはこれからある人物を模倣してください。",
         "chat_data": [
@@ -81,12 +80,17 @@ class Character:
     @classmethod
     def select_random_character(cls):
         chara_config = character_dict.get(random.choice(list(character_dict.keys())))
+        if chara_config is None:
+            return None
         return cls(**chara_config)
 
     # ユーザーIDからキャラクターを取得する
     @classmethod
     def get_character(cls, user_id: str):
-        return character_dict.get(user_id, None)
+        chara_config = character_dict.get(user_id)
+        if chara_config is None:
+            return None
+        return cls(**chara_config)
 
     # キャラクターを作成する
     def __init__(
@@ -112,7 +116,7 @@ class Character:
         print(contents_text)
 
         # キャラクターが存在する場合は、キャラクターの性格に合わせて返答する
-        return self.name + ": " + self.model.generate_content(
+        return self.model.generate_content(
             contents=contents_text,
             safety_settings={
                 HarmCategory.HARM_CATEGORY_HATE_SPEECH: HarmBlockThreshold.BLOCK_NONE,

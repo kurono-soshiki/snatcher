@@ -28,7 +28,7 @@ async def on_message(message):
     # テキスト生成AIテストコマンド
     elif message.content.startswith('!genai'):
         # テキスト生成AIのリクエストを送信
-        response = Character().answer('こんにちは')
+        response = Character.select_random_character().answer('こんにちは')
         # リクエストの結果を送信
         await message.channel.send(response)
 
@@ -48,7 +48,7 @@ async def on_message(message):
         response = chara.answer(user_message)
 
         # リクエストの結果を送信
-        await message.channel.send(response)
+        await message.channel.send("{chara.name}: {response}")
         
 
 client.run(config.DISCORD_TOKEN)
