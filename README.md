@@ -51,7 +51,7 @@ poetry run python3 src/cli.py
 # モデリング・クラス設計
 それぞれの人格はCharacterクラスを用いて操作する  
 Characterには`キャラクターブック`が存在し、これが人格を司る  
-Characterは現在の状態(State)を`注意(Attention)`として保存する  
+Characterは現在の`状態(State)`を`注意(Attention)`として保存する  
 プロンプトは`システムメッセージ`+`キャラクターブック`+`注意`によって構築される  
 
 ## Character
